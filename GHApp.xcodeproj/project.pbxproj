@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		D908146F23CA1B0500993AF9 /* ErrorMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D908146E23CA1B0500993AF9 /* ErrorMessage.swift */; };
+		D90739DB23ED770600D0B3BC /* GFError.swift in Sources */ = {isa = PBXBuildFile; fileRef = D90739DA23ED770600D0B3BC /* GFError.swift */; };
 		D908147223CC90AF00993AF9 /* FollowerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D908147123CC90AF00993AF9 /* FollowerCell.swift */; };
 		D908147423CC91BB00993AF9 /* GFAvatarImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D908147323CC91BB00993AF9 /* GFAvatarImageView.swift */; };
 		D9095FFB23BE9F81006AB462 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9095FFA23BE9F81006AB462 /* AppDelegate.swift */; };
@@ -33,7 +33,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		D908146E23CA1B0500993AF9 /* ErrorMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorMessage.swift; sourceTree = "<group>"; };
+		D90739DA23ED770600D0B3BC /* GFError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GFError.swift; sourceTree = "<group>"; };
 		D908147123CC90AF00993AF9 /* FollowerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowerCell.swift; sourceTree = "<group>"; };
 		D908147323CC91BB00993AF9 /* GFAvatarImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GFAvatarImageView.swift; sourceTree = "<group>"; };
 		D9095FF723BE9F81006AB462 /* GHApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GHApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -74,7 +74,7 @@
 		D908146D23CA1AEB00993AF9 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
-				D908146E23CA1B0500993AF9 /* ErrorMessage.swift */,
+				D90739DA23ED770600D0B3BC /* GFError.swift */,
 				D912549E23D499A7008B741C /* UIHelper.swift */,
 			);
 			path = Utilities;
@@ -308,6 +308,7 @@
 				D916E67223DEE57C007E20E1 /* GFEmptyStateView.swift in Sources */,
 				D911DA7223C4A63100A53DD5 /* GFAlertVC.swift in Sources */,
 				D9152E8323C630D60073A446 /* User.swift in Sources */,
+				D90739DB23ED770600D0B3BC /* GFError.swift in Sources */,
 				D908147223CC90AF00993AF9 /* FollowerCell.swift in Sources */,
 				D908147423CC91BB00993AF9 /* GFAvatarImageView.swift in Sources */,
 				D911DA7023C4A18000A53DD5 /* GFBodyLabel.swift in Sources */,
@@ -316,7 +317,6 @@
 				D92621D723BEE74D00D80F72 /* SearchVC.swift in Sources */,
 				D92621E123C241D500D80F72 /* FollowerListVC.swift in Sources */,
 				D9095FFB23BE9F81006AB462 /* AppDelegate.swift in Sources */,
-				D908146F23CA1B0500993AF9 /* ErrorMessage.swift in Sources */,
 				D912549F23D499A7008B741C /* UIHelper.swift in Sources */,
 				D9152E8623C6EF140073A446 /* NetworkManager.swift in Sources */,
 				D9095FFD23BE9F81006AB462 /* SceneDelegate.swift in Sources */,

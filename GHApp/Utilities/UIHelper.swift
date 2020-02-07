@@ -20,6 +20,7 @@ struct UIHelper {
         
         let flowLayout                      = UICollectionViewFlowLayout()
         flowLayout.sectionInset             = UIEdgeInsets(top: padding, left: padding, bottom: padding, right: padding)
+        /// section inset -> the spacing between the view borders and section where all items are populated in
         flowLayout.itemSize                 = CGSize(width: itemWidth, height: (itemWidth + 40))
         
         return flowLayout
