@@ -33,6 +33,7 @@
 		D92621DD23C0C92700D80F72 /* GFButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D92621DC23C0C92700D80F72 /* GFButton.swift */; };
 		D92621DF23C0DAFE00D80F72 /* GFTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = D92621DE23C0DAFE00D80F72 /* GFTextField.swift */; };
 		D92621E123C241D500D80F72 /* FollowerListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D92621E023C241D500D80F72 /* FollowerListVC.swift */; };
+		D999B14423F00BFC00F3AE1C /* GFItemInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D999B14323F00BFC00F3AE1C /* GFItemInfoView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -64,6 +65,7 @@
 		D92621DC23C0C92700D80F72 /* GFButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GFButton.swift; sourceTree = "<group>"; };
 		D92621DE23C0DAFE00D80F72 /* GFTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GFTextField.swift; sourceTree = "<group>"; };
 		D92621E023C241D500D80F72 /* FollowerListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowerListVC.swift; sourceTree = "<group>"; };
+		D999B14323F00BFC00F3AE1C /* GFItemInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GFItemInfoView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -191,6 +193,7 @@
 			isa = PBXGroup;
 			children = (
 				D916E67123DEE57C007E20E1 /* GFEmptyStateView.swift */,
+				D999B14323F00BFC00F3AE1C /* GFItemInfoView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -331,6 +334,7 @@
 				D912549F23D499A7008B741C /* UIHelper.swift in Sources */,
 				D9152E8623C6EF140073A446 /* NetworkManager.swift in Sources */,
 				D9095FFD23BE9F81006AB462 /* SceneDelegate.swift in Sources */,
+				D999B14423F00BFC00F3AE1C /* GFItemInfoView.swift in Sources */,
 				D911DA7823C57F9000A53DD5 /* GFContainerView.swift in Sources */,
 				D90739E123EEA84300D0B3BC /* Constants.swift in Sources */,
 			);
