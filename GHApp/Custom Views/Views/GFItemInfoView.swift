@@ -14,9 +14,6 @@ class GFItemInfoView: UIView {
         case repos, gists, followers, following
     }
     
-    //var user: User!
-
-    
     let symbolImageView = UIImageView()
     let titleLabel      = GFTittleLabel(textAlignment: .left, fontSize: 14)
     let countLabel      = GFTittleLabel(textAlignment: .center, fontSize: 14)
@@ -66,9 +63,7 @@ class GFItemInfoView: UIView {
         switch infoItemType {
         case .repos:
             symbolImageView.image       = UIImage(systemName: SFSymbols.repos)
-            //symbolImageView.tintColor   = .secondaryLabel
             titleLabel.text             = "Public Repos"
-            
         case .gists:
             symbolImageView.image       = UIImage(systemName: SFSymbols.gists)
             titleLabel.text             = "Public Gists"

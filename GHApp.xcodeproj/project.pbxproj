@@ -34,6 +34,7 @@
 		D92621DF23C0DAFE00D80F72 /* GFTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = D92621DE23C0DAFE00D80F72 /* GFTextField.swift */; };
 		D92621E123C241D500D80F72 /* FollowerListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D92621E023C241D500D80F72 /* FollowerListVC.swift */; };
 		D999B14423F00BFC00F3AE1C /* GFItemInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D999B14323F00BFC00F3AE1C /* GFItemInfoView.swift */; };
+		D999B14623F1107800F3AE1C /* GFItemInfoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D999B14523F1107800F3AE1C /* GFItemInfoVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -66,6 +67,7 @@
 		D92621DE23C0DAFE00D80F72 /* GFTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GFTextField.swift; sourceTree = "<group>"; };
 		D92621E023C241D500D80F72 /* FollowerListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowerListVC.swift; sourceTree = "<group>"; };
 		D999B14323F00BFC00F3AE1C /* GFItemInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GFItemInfoView.swift; sourceTree = "<group>"; };
+		D999B14523F1107800F3AE1C /* GFItemInfoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GFItemInfoVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -228,6 +230,7 @@
 				D911DA7123C4A63100A53DD5 /* GFAlertVC.swift */,
 				D911DA7723C57F9000A53DD5 /* GFContainerView.swift */,
 				D90739DC23EDAB0800D0B3BC /* GFUserInfoHeaderVC.swift */,
+				D999B14523F1107800F3AE1C /* GFItemInfoVC.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -330,6 +333,7 @@
 				D9152E8123C62FF40073A446 /* Follower.swift in Sources */,
 				D92621D723BEE74D00D80F72 /* SearchVC.swift in Sources */,
 				D92621E123C241D500D80F72 /* FollowerListVC.swift in Sources */,
+				D999B14623F1107800F3AE1C /* GFItemInfoVC.swift in Sources */,
 				D9095FFB23BE9F81006AB462 /* AppDelegate.swift in Sources */,
 				D912549F23D499A7008B741C /* UIHelper.swift in Sources */,
 				D9152E8623C6EF140073A446 /* NetworkManager.swift in Sources */,
