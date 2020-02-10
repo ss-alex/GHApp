@@ -8,7 +8,7 @@
 
 import UIKit
 
-class GFItemInfoView: UIView {
+class GFLittleItemInfoView: UIView {
     
     enum ItemInfoType {
         case repos, gists, followers, following
@@ -64,18 +64,20 @@ class GFItemInfoView: UIView {
         case .repos:
             symbolImageView.image       = UIImage(systemName: SFSymbols.repos)
             titleLabel.text             = "Public Repos"
+            countLabel.text             = String(count)
         case .gists:
             symbolImageView.image       = UIImage(systemName: SFSymbols.gists)
             titleLabel.text             = "Public Gists"
+            countLabel.text             = String(count)
         case .following:
             symbolImageView.image       = UIImage(systemName: SFSymbols.following)
             titleLabel.text             = "Following"
+            countLabel.text             = String(count)
         case .followers:
             symbolImageView.image       = UIImage(systemName: SFSymbols.followers)
             titleLabel.text             = "Followers"
+            countLabel.text             = String(count)
         }
-        
-        countLabel.text             = String(count)
     }
     
 }
