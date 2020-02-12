@@ -21,7 +21,7 @@ class GFLittleItemInfoView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        configure()
+        configureCombinedItemInfoVC()
     }
     
     
@@ -30,7 +30,7 @@ class GFLittleItemInfoView: UIView {
     }
     
     
-    private func configure () {
+    private func configureCombinedItemInfoVC () {
         addSubview(symbolImageView)
         addSubview(titleLabel)
         addSubview(countLabel)
@@ -59,25 +59,22 @@ class GFLittleItemInfoView: UIView {
     }
     
     
-    func set(infoItemType: ItemInfoType, withCount count: Int) {
+    func setInfo(infoItemType: ItemInfoType, withCount count: Int) {
         switch infoItemType {
         case .repos:
             symbolImageView.image       = UIImage(systemName: SFSymbols.repos)
             titleLabel.text             = "Public Repos"
-            countLabel.text             = String(count)
         case .gists:
             symbolImageView.image       = UIImage(systemName: SFSymbols.gists)
             titleLabel.text             = "Public Gists"
-            countLabel.text             = String(count)
         case .following:
             symbolImageView.image       = UIImage(systemName: SFSymbols.following)
             titleLabel.text             = "Following"
-            countLabel.text             = String(count)
         case .followers:
             symbolImageView.image       = UIImage(systemName: SFSymbols.followers)
             titleLabel.text             = "Followers"
-            countLabel.text             = String(count)
         }
+        countLabel.text             = String(count)
     }
     
 }

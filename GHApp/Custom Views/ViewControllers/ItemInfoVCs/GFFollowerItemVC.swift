@@ -8,7 +8,7 @@
 
 import Foundation
 
-class GFFollowerItemVC: GFCombinedItemInfoVC {
+class GFFollowerItemVC: GFCombinedBigItemInfoVC {
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -17,8 +17,8 @@ class GFFollowerItemVC: GFCombinedItemInfoVC {
     
     
     private func configureItems() {
-        littleItemInfoViewOne.set(infoItemType: .following, withCount: user.following)
-        littleItemInfoViewTwo.set(infoItemType: .followers, withCount: user.followers)
+        littleItemInfoViewOne.setInfo(infoItemType: .following, withCount: user.following)
+        littleItemInfoViewTwo.setInfo(infoItemType: .followers, withCount: user.followers)
         actionButton.set(backgroundColor: .systemGreen, title: "Get Followers")
     }
 

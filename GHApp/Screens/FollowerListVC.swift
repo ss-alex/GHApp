@@ -93,7 +93,7 @@ class FollowerListVC: UIViewController {
         dataSource = UICollectionViewDiffableDataSource<Section, Follower>(collectionView: collectionView, cellProvider: { (collectionView, indexPath, follower) -> UICollectionViewCell? in /// the cell with populated textLabels is returned
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FollowerCell.reuseID, for: indexPath) as! FollowerCell
             
-            cell.set(follower: follower) /// make changes on the created cell (add text to the userNameLabel)
+            cell.setTextAndImageFor(follower: follower) /// make changes on the created cell (add text to the userNameLabel)
             return cell
         })
     }
@@ -114,7 +114,7 @@ extension FollowerListVC: UICollectionViewDelegate {
         
         let offsetY             = scrollView.contentOffset.y
         let contentHeight       = scrollView.contentSize.height
-        let screenHeight              = scrollView.frame.size.height
+        let screenHeight        = scrollView.frame.size.height
         
         if offsetY > contentHeight - screenHeight {
             guard hasMoreFollowers else { return } /// as far as it is variable, if there are less then 100 followers the var will turn into the 'false'
@@ -128,7 +128,6 @@ extension FollowerListVC: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let activeArray         = isSearching ? filteredFollowers : followers /// if (isSearching) = true, then (filteredFollowers), else (fo.rs)
         let follower            = activeArray[indexPath.item] /// it is connected to the item that is tapped
-        
         let userInfoVC          = UserInfoVC()
         userInfoVC.userName     = follower.login
         let navController       = UINavigationController(rootViewController: userInfoVC)

@@ -8,12 +8,12 @@
 
 import UIKit
 
-class GFCombinedItemInfoVC: UIViewController {
+class GFCombinedBigItemInfoVC: UIViewController {
     
-    let stackView       = UIStackView()
-    let littleItemInfoViewOne = GFLittleItemInfoView()
-    let littleItemInfoViewTwo = GFLittleItemInfoView()
-    let actionButton    = GFButton()
+    let stackView               = UIStackView()
+    let littleItemInfoViewOne   = GFLittleItemInfoView()
+    let littleItemInfoViewTwo   = GFLittleItemInfoView()
+    let actionButton            = GFButton()
     
     var user:User!
     
@@ -32,8 +32,8 @@ class GFCombinedItemInfoVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureBackgroundView()
-        layoutUI()
         configureStackView()
+        layoutUI()
     }
 
 
