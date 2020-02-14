@@ -8,6 +8,10 @@
 
 import UIKit
 
+protocol FollowerListVCDelegate: class {
+    func didRequestFollowers(for username: String)
+}
+
 class FollowerListVC: UIViewController {
     
     enum Section { case main }
@@ -54,7 +58,7 @@ class FollowerListVC: UIViewController {
     }
     
     
-    func getFollowers(username: String, page: Int){
+    func getFollowers(username: String, page: Int) {
         showLoadingView()
         NetworkManager.shared.getFollowers(for: username, page: page) { [weak self] result in /// making self weak to deal with memory leaks
             guard let self = self else {return} ///unwraping optional self(s) below..
@@ -126,11 +130,13 @@ extension FollowerListVC: UICollectionViewDelegate {
     
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    
         let activeArray         = isSearching ? filteredFollowers : followers /// if (isSearching) = true, then (filteredFollowers), else (fo.rs)
         let follower            = activeArray[indexPath.item] /// it is connected to the item that is tapped
-        let userInfoVC          = UserInfoVC()
-        userInfoVC.userName     = follower.login
-        let navController       = UINavigationController(rootViewController: userInfoVC)
+        let destinationVC       = UserInfoVC()
+        destinationVC.userName  = follower.login
+        destinationVC.delegate  = self /// 'FollowerListVC' is listening to the 'UserInfoVC''
+        let navController       = UINavigationController(rootViewController: destinationVC)
         
         present(navController, animated: true)
     }
@@ -152,6 +158,20 @@ extension FollowerListVC: UISearchResultsUpdating, UISearchBarDelegate {
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         isSearching = false
         updateDataOnScreen(on: followers)
+    }
+}
+
+
+extension FollowerListVC: FollowerListVCDelegate { /// extension for interaction with UserInfoVC when the button is tapped
+    
+    func didRequestFollowers(for username: String) {
+        self.username   = username
+        title           = username
+        page            = 1 /// reset page to 1 (it could be any number in the memory after we fetched the followers before)
+        followers.removeAll()
+        filteredFollowers.removeAll()
+        collectionView.setContentOffset(.zero, animated: true) /// scroll up to the limit
+        getFollowers(username: username, page: page)
     }
     
     

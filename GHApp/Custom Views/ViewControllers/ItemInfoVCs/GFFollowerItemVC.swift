@@ -8,7 +8,7 @@
 
 import Foundation
 
-class GFFollowerItemVC: GFCombinedBigItemInfoVC {
+class GFFollowerItemVC: GFItemInfoVC {
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,4 +22,8 @@ class GFFollowerItemVC: GFCombinedBigItemInfoVC {
         actionButton.set(backgroundColor: .systemGreen, title: "Get Followers")
     }
 
+    
+    override func actionButtonTapped() {
+        delegate.didTapGetFollowers(for: user)
+    }
 }

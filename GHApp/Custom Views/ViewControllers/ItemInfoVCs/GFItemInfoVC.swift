@@ -8,7 +8,7 @@
 
 import UIKit
 
-class GFCombinedBigItemInfoVC: UIViewController {
+class GFItemInfoVC: UIViewController {
     
     let stackView               = UIStackView()
     let littleItemInfoViewOne   = GFLittleItemInfoView()
@@ -16,6 +16,7 @@ class GFCombinedBigItemInfoVC: UIViewController {
     let actionButton            = GFButton()
     
     var user:User!
+    weak var delegate: UserInfoVCDelegate! /// delegate of type 'UserInfoVCDelegate' /// weak - to prevent the retain cicles, memories leakes
     
     
     init(user: User){
@@ -34,6 +35,7 @@ class GFCombinedBigItemInfoVC: UIViewController {
         configureBackgroundView()
         configureStackView()
         layoutUI()
+        configureActionButton()
     }
 
 
@@ -50,6 +52,14 @@ class GFCombinedBigItemInfoVC: UIViewController {
         stackView.addArrangedSubview(littleItemInfoViewOne)
         stackView.addArrangedSubview(littleItemInfoViewTwo)
     }
+    
+    
+    private func configureActionButton() {
+        actionButton.addTarget(self, action: #selector(actionButtonTapped), for: .touchUpInside)
+    }
+    
+    
+    @objc func actionButtonTapped() {}
     
     
     private func layoutUI() {
