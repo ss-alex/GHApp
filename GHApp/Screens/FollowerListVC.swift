@@ -22,6 +22,7 @@ class FollowerListVC: GFDataLoadingVC {
     var page = 1
     var hasMoreFollowers = true
     var isSearching = false
+    var isLoadingMoreFollowers = false
     
     var collectionView: UICollectionView!
     var dataSource: UICollectionViewDiffableDataSource<Section, Follower>!
@@ -96,7 +97,6 @@ class FollowerListVC: GFDataLoadingVC {
     func configureSearchController() {
         let searchController                                    = UISearchController()
         searchController.searchResultsUpdater                   = self /// update search results when smth is inserted
-        searchController.searchBar.delegate                     = self
         searchController.searchBar.placeholder                  = "Search for a username"
         searchController.obscuresBackgroundDuringPresentation   = false /// not to make a darkening of the view
         navigationItem.searchController                         = searchController
@@ -105,6 +105,8 @@ class FollowerListVC: GFDataLoadingVC {
     
     func getFollowers(username: String, page: Int) {
         showLoadingView()
+        isLoadingMoreFollowers = true
+        
         NetworkManager.shared.getFollowers(for: username, page: page) { [weak self] result in /// making self weak to deal with memory leaks
             guard let self = self else {return} ///unwraping optional self(s) below..
             self.dismissLoadingView()
@@ -125,6 +127,8 @@ class FollowerListVC: GFDataLoadingVC {
             case .failure(let error): /// Just naming the parameter to refer to it.
                 self.presentGFAlertOnMainThread(title: "Bad Stuff Happend", message: error.rawValue, buttonTitle: "Ok")
             }
+            
+            self.isLoadingMoreFollowers = false
         }
     }
 
@@ -165,8 +169,8 @@ extension FollowerListVC: UICollectionViewDelegate {
         let contentHeight       = scrollView.contentSize.height
         let screenHeight        = scrollView.frame.size.height
         
-        if offsetY > contentHeight - screenHeight {
-            guard hasMoreFollowers else { return } /// as far as it is variable, if there are less then 100 followers the var will turn into the 'false'
+        if offsetY > contentHeight - screenHeight { /// when scrolled to the very bottom
+            guard hasMoreFollowers, !isLoadingMoreFollowers else { return } /// as far as it is variable, if there are less then 100 followers the var will turn into the 'false' /// the user has moreFollowers and loading more followers 'isLoadingMoreFollowers' = false; if isLoadingMoreFollowers = true, we return and not add the page and do not get new followers.
             page += 1
             getFollowers(username: username, page: page)
         }
@@ -189,20 +193,19 @@ extension FollowerListVC: UICollectionViewDelegate {
 }
 
 
-extension FollowerListVC: UISearchResultsUpdating, UISearchBarDelegate {
+extension FollowerListVC: UISearchResultsUpdating {
     
     func updateSearchResults(for searchController: UISearchController) {
-        guard let filter = searchController.searchBar.text, !filter.isEmpty else { return }
+        guard let filter = searchController.searchBar.text, !filter.isEmpty else {
+            filteredFollowers.removeAll()
+            updateDataOnScreen(on: followers)
+            isSearching = false
+            return
+        }
         isSearching = true
         
         filteredFollowers = followers.filter { $0.login.lowercased().contains(filter.lowercased()) }
         updateDataOnScreen(on: filteredFollowers)
-    }
-    
-    
-    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        isSearching = false
-        updateDataOnScreen(on: followers)
     }
 }
 
@@ -215,7 +218,8 @@ extension FollowerListVC: FollowerListVCDelegate { /// extension for interaction
         page            = 1 /// reset page to 1 (it could be any number in the memory after we fetched the followers before)
         followers.removeAll()
         filteredFollowers.removeAll()
-        collectionView.setContentOffset(.zero, animated: true) /// scroll up to the limit
+        ///collectionView.setContentOffset(.zero, animated: true) /// scroll up to the limit
+        collectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .top, animated: true) /// scroll up to the 1st item
         getFollowers(username: username, page: page)
     }
     
