@@ -13,7 +13,7 @@ protocol UserInfoVCDelegate: class {
     func didTapGetFollowers(for user: User) /// 'for user:' -  to give an excess to 'User'' Model
 }
 
-class UserInfoVC: UIViewController {
+class UserInfoVC: GFDataLoadingVC {
     
     let headerView             = UIView()
     let itemViewOne            = UIView()

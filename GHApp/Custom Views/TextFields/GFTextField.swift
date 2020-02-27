@@ -36,6 +36,7 @@ class GFTextField: UITextField {
         backgroundColor             = .tertiarySystemBackground
         autocorrectionType          = .no
         returnKeyType               = .go //change return key to "go"
+        clearButtonMode             = .whileEditing /// this adds a little x-button to delete the text in the text field
         placeholder                 = "Enter a username"
     }
     

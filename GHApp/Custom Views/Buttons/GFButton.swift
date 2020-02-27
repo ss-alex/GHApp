@@ -21,11 +21,10 @@ class GFButton: UIButton {
     }
     
     
-    init(backgroundColor: UIColor, tittle: String) {
-        super.init(frame: .zero) // set the frame to .zero since constraints will be added later
+    convenience init(backgroundColor: UIColor, tittle: String) {
+        self.init(frame: .zero) // set the frame to .zero since constraints will be added later
         self.backgroundColor = backgroundColor
         self.setTitle(tittle, for: .normal)
-        configure()
     }
     
     

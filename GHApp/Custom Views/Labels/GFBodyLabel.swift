@@ -20,10 +20,9 @@ class GFBodyLabel: UILabel {
     }
     
     
-    init(textAlignment: NSTextAlignment) {
-        super.init(frame: .zero)
+    convenience init(textAlignment: NSTextAlignment) {
+        self.init(frame: .zero) /// 'self' init instead of 'super' is a main rule in applying the 'convenience' init
         self.textAlignment = textAlignment
-        configure()
     }
     
     

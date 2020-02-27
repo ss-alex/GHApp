@@ -17,3 +17,4 @@ enum GFError: String, Error {
     case alreadyInFavorites    = "You've already favorited this user."
 }
 
+

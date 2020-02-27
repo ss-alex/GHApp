@@ -27,8 +27,11 @@ class FavoriteCell: UITableViewCell {
     
     
     func setTextAndImageFor(favorite: Follower) {
-        avatarImageView.downloadImage(from: favorite.avatarUrl)
         userNameLabel.text = favorite.login
+        NetworkManager.shared.downloadImage(from: favorite.avatarUrl) { [weak self] image in
+        guard let self = self else { return }
+        DispatchQueue.main.async { self.avatarImageView.image = image }
+        }
     }
     
     
@@ -53,3 +56,4 @@ class FavoriteCell: UITableViewCell {
     }
     
 }
+
