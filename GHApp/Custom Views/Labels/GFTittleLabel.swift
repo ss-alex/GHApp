@@ -15,6 +15,7 @@ class GFTittleLabel: UILabel {
         configure()
     }
     
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -32,8 +33,6 @@ class GFTittleLabel: UILabel {
         adjustsFontSizeToFitWidth       = true
         minimumScaleFactor              = 0.9 /// don't shrink font more that 90%
         lineBreakMode                   = .byTruncatingTail /// add 3 dots in the end if the label is long
-        
         translatesAutoresizingMaskIntoConstraints = false
     }
-    
 }

@@ -26,6 +26,5 @@ extension UIViewController { // create this extansion to add GFAlertVC to all th
         safariVC.preferredControlTintColor  = .systemGreen
         present(safariVC, animated: true)
     }
-    
 }
 

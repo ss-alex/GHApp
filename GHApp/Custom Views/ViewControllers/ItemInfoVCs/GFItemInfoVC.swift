@@ -13,7 +13,6 @@ protocol ItemInfoVCDelegate: class {
     func didTapGetFollowers(for user: User) /// 'for user:' -  to give an excess to 'User'' Model
 }
 
-
 class GFItemInfoVC: UIViewController {
     
     let stackView               = UIStackView()
@@ -85,7 +84,5 @@ class GFItemInfoVC: UIViewController {
             actionButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -padding),
             actionButton.heightAnchor.constraint(equalToConstant: 44)
         ])
-        
     }
-    
 }

@@ -15,16 +15,13 @@ class GFDataLoadingVC: UIViewController {
 
     func showLoadingView () {
         containerView = UIView(frame: view.bounds) /// it fills the whole screen
-        view.addSubview(containerView)
-        
         containerView.backgroundColor   = .systemBackground
         containerView.alpha             = 0 /// alpha = transperency
-        
+        view.addSubview(containerView)
         UIView.animate(withDuration: 0.25) { self.containerView.alpha = 0.8 } /// going from 0 transperency to 0.8 with animation
         
         let activityIndicator = UIActivityIndicatorView(style: .large)
         containerView.addSubview(activityIndicator)
-        
         activityIndicator.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
@@ -49,8 +46,4 @@ class GFDataLoadingVC: UIViewController {
         emptyStateView.frame = view.bounds
         view.addSubview(emptyStateView)
     }
-    
-
-
-
 }

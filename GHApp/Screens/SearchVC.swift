@@ -14,9 +14,8 @@ class SearchVC: UIViewController {
     let usernameTextField       = GFTextField()
     let callToActionButton      = GFButton(backgroundColor: .systemGreen, tittle: "Get Followers")
     
-    var logoImageViewTopConstraint: NSLayoutConstraint!
-    
     var isUsernameEntered: Bool { return !usernameTextField.text!.isEmpty } // text validation
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -60,10 +59,8 @@ class SearchVC: UIViewController {
         
         let topConstraintConstant:CGFloat = DeviceTypes.isiPhoneSE || DeviceTypes.isiPhone8Zoomed ? 20 : 80 /// if 'isiPhoneSE'- 20, if 'isiPhone8Zoomed' - 80
         
-        logoImageViewTopConstraint = logoImageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: topConstraintConstant) /// to locate the keyboard properly
-        logoImageViewTopConstraint.isActive = true
-        
         NSLayoutConstraint.activate([
+            logoImageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: topConstraintConstant), ///to locate the keyboard properly
             logoImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             logoImageView.heightAnchor.constraint(equalToConstant: 200),
             logoImageView.widthAnchor.constraint(equalToConstant: 200)

@@ -19,6 +19,5 @@ extension UIView {
             bottomAnchor.constraint(equalTo: superview.bottomAnchor)
         ])
     }
-    
 }
 

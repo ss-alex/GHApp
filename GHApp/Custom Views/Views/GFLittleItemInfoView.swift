@@ -10,9 +10,7 @@ import UIKit
 
 class GFLittleItemInfoView: UIView {
     
-    enum ItemInfoType {
-        case repos, gists, followers, following
-    }
+    enum ItemInfoType { case repos, gists, followers, following }
     
     let symbolImageView = UIImageView()
     let titleLabel      = GFTittleLabel(textAlignment: .left, fontSize: 14)
@@ -55,7 +53,6 @@ class GFLittleItemInfoView: UIView {
             countLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor),
             countLabel.heightAnchor.constraint(equalToConstant: 18)
         ])
-        
     }
     
     
@@ -74,7 +71,7 @@ class GFLittleItemInfoView: UIView {
             symbolImageView.image       = SFSymbols.followers
             titleLabel.text             = "Followers"
         }
+        
         countLabel.text             = String(count)
     }
-    
 }

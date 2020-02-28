@@ -15,6 +15,7 @@ class GFSecondaryTitleLabel: UILabel {
            configure()
        }
        
+    
        required init?(coder: NSCoder) {
            fatalError("init(coder:) has not been implemented")
        }
@@ -34,5 +35,4 @@ class GFSecondaryTitleLabel: UILabel {
            lineBreakMode                   = .byTruncatingTail // if text is long, it will be with 3 dots "..."
            translatesAutoresizingMaskIntoConstraints = false
        }
-
 }

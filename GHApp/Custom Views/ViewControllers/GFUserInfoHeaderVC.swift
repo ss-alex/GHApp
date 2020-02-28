@@ -39,7 +39,7 @@ class GFUserInfoHeaderVC: UIViewController {
     
     
     func configureUIElements() {
-        downloadAvatarImage()
+        avatarImageView.downloadAvatarImage(fromURL: user.avatarUrl)
         
         userNameLabel.text              = user.login
         nameLabel.text                  = user.name ?? "" /// if user.name = nil (because it is optional), it needs type blank text ->  " "
@@ -51,13 +51,6 @@ class GFUserInfoHeaderVC: UIViewController {
         locationImageView.tintColor     = .secondaryLabel
     }
     
-    
-    func downloadAvatarImage() {
-        NetworkManager.shared.downloadImage(from: user.avatarUrl) { [weak self] image in
-        guard let self = self else { return }
-        DispatchQueue.main.async { self.avatarImageView.image = image }
-        }
-    }
     
     func addSubviews() {
         view.addSubview(avatarImageView)

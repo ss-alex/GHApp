@@ -13,6 +13,7 @@ class FavoritesListVC: GFDataLoadingVC {
     let tableView               = UITableView()
     var favorites: [Follower]   = []
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configureViewController()
@@ -52,19 +53,23 @@ class FavoritesListVC: GFDataLoadingVC {
             
             switch result {
             case .success(let favorites):
-                if favorites.isEmpty {
-                    self.showEmptyStateView(with: "No Favorites?\nAdd one new follower screen.", in: self.view) /// \n is for hardcoding the sentence before \n on one line and the rest on another line
-                } else {
-                    self.favorites = favorites
-                    DispatchQueue.main.async {
-                        self.tableView.reloadData()
-                        self.view.bringSubviewToFront(self.tableView)
-                    }
-                }
-                
+                self.updateUI(with: favorites)
                 
             case .failure(let error):
                 self.presentGFAlertOnMainThread(title: "Something went wrong", message: error.rawValue, buttonTitle: "Ok")
+            }
+        }
+    }
+    
+    
+    func updateUI(with favorites: [Follower]) {
+        if favorites.isEmpty {
+            self.showEmptyStateView(with: "No Favorites?\nAdd one new follower screen.", in: self.view) /// \n is for hardcoding the sentence before \n on one line and the rest on another line
+        } else {
+            self.favorites = favorites
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+                self.view.bringSubviewToFront(self.tableView)
             }
         }
     }
@@ -76,6 +81,7 @@ extension FavoritesListVC: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return favorites.count
     }
+    
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell { /// configure each cell every time it appears on screen
         let cell = tableView.dequeueReusableCell(withIdentifier: FavoriteCell.reuseID) as! FavoriteCell /// we cast 'cel' as 'FavoriteCell' because we need to have a possibility to reach function 'setTextAndImageFor' inside the class 'FavoriteCell'
@@ -107,7 +113,4 @@ extension FavoritesListVC: UITableViewDataSource, UITableViewDelegate {
             self.presentGFAlertOnMainThread(title: "Unable to remove", message: error.rawValue, buttonTitle: "Ok")/// if we have an error
         }
     }
-    
-    
-
 }

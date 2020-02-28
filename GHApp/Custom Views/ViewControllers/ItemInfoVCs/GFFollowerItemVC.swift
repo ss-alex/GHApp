@@ -16,6 +16,7 @@ class GFFollowerItemVC: GFItemInfoVC {
     
     weak var delegate: GFFollowerItemVCDelegate!
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configureItems()

@@ -53,7 +53,6 @@ class UserInfoVC: GFDataLoadingVC {
             contentView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
             contentView.heightAnchor.constraint(equalToConstant: 600)
         ])
-    
     }
     
     
@@ -74,7 +73,6 @@ class UserInfoVC: GFDataLoadingVC {
     
     
     func configureUIElements (with user: User) {
-        
         let repoItemVC              = GFRepoItemVC(user: user)
         repoItemVC.delegate         = self
             
@@ -129,7 +127,6 @@ class UserInfoVC: GFDataLoadingVC {
     
     
     @objc func dismissUserInfoVC () { dismiss(animated: true) }
-
 }
 
 

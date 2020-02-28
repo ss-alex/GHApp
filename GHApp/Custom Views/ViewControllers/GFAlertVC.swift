@@ -10,23 +10,23 @@ import UIKit
 
 class GFAlertVC: UIViewController {
 
-    let containerView       = GFAlertContainerView()
-    let titleLabel          = GFTittleLabel(textAlignment: .center, fontSize: 20)
-    let errorMessageLabel   = GFBodyLabel(textAlignment: .center)
-    let actionButton        = GFButton(backgroundColor: .systemPink, tittle: "Ok")
+    let containerView               = GFAlertContainerView()
+    let titleLabel                  = GFTittleLabel(textAlignment: .center, fontSize: 20)
+    let errorMessageLabel           = GFBodyLabel(textAlignment: .center)
+    let actionButton                = GFButton(backgroundColor: .systemPink, tittle: "Ok")
     
     var alertTitle: String?
     var message: String?
     var buttonTitle: String?
     
-    let padding: CGFloat    = 20 // in order not to write 20 every time
+    let padding: CGFloat            = 20 // in order not to write 20 every time
     
     
     init(title: String, message: String, buttonTitle: String) {
         super.init(nibName: nil, bundle: nil)
-        self.alertTitle     = title
-        self.message        = message
-        self.buttonTitle    = buttonTitle
+        self.alertTitle             = title
+        self.message                = message
+        self.buttonTitle            = buttonTitle
     }
     
     
@@ -37,8 +37,8 @@ class GFAlertVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         view.backgroundColor = UIColor.black.withAlphaComponent(0.75) /// = view.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.75)
+        
         configureContainerView()
         configureTitleLabel()
         configureActionButton()
@@ -81,7 +81,6 @@ class GFAlertVC: UIViewController {
             actionButton.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: padding),
             actionButton.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -padding),
             actionButton.heightAnchor.constraint(equalToConstant: 44)
-            
         ])
     }
     
@@ -97,12 +96,8 @@ class GFAlertVC: UIViewController {
             errorMessageLabel.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -padding),
             errorMessageLabel.bottomAnchor.constraint(equalTo: actionButton.topAnchor, constant: -12)
         ])
-        
     }
     
     
-    @objc func dismissVC() {
-        dismiss(animated: true)
-        
-    }
+    @objc func dismissVC() { dismiss(animated: true) }
 }

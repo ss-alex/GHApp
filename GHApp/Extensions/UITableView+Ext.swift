@@ -10,7 +10,6 @@ import UIKit
 
 extension UITableView {
     
-    
     func reloadDataOnMainThread() {
         DispatchQueue.main.async { self.reloadData() } /// useful extention - must have /// can be used in other projects
     }
@@ -19,5 +18,4 @@ extension UITableView {
     func removeExcessCells() {
         tableFooterView = UIView(frame: .zero)
     }
-    
 }

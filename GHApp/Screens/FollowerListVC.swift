@@ -11,14 +11,14 @@ import UIKit
 class FollowerListVC: GFDataLoadingVC {
     
     enum Section { case main }
-    
+
     var username: String!
-    var followers: [Follower] = []
-    var filteredFollowers: [Follower] = []
-    var page = 1
-    var hasMoreFollowers = true
-    var isSearching = false
-    var isLoadingMoreFollowers = false
+    var followers: [Follower]           = []
+    var filteredFollowers: [Follower]   = []
+    var page                            = 1
+    var hasMoreFollowers                = true
+    var isSearching                     = false
+    var isLoadingMoreFollowers          = false
     
     var collectionView: UICollectionView!
     var dataSource: UICollectionViewDiffableDataSource<Section, Follower>!
@@ -43,8 +43,8 @@ class FollowerListVC: GFDataLoadingVC {
         getFollowers(username: username, page: page)
         configureCollectionView()
         configureDataSource()
-        
     }
+    
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -71,23 +71,28 @@ class FollowerListVC: GFDataLoadingVC {
             
             switch result{
             case .success(let user):
-                let favorite = Follower(login: user.login, avatarUrl: user.avatarUrl)
-                PersistenceManager.updateWith(favorite: favorite, actionType: .add) { [weak self] error in
-                    guard let self = self else { return }
-                    guard let error = error else {
-                        self.presentGFAlertOnMainThread(title: "Success!", message: "You have successfully favorited this user", buttonTitle: "Hooray!") /// if error is nil, we call 'presentGFAlertOnMainThread'
-                        return
-                    }
-                    self.presentGFAlertOnMainThread(title: "Something went wrong.", message: error.rawValue, buttonTitle: "Ok") /// if error is not 'nil'
-                }
+                self.addUserToFavorites(with: user)
                 
             case .failure(let error):
                 self.presentGFAlertOnMainThread(title: "Something went wrong", message: error.rawValue, buttonTitle: "Ok")
             }
-            
         }
-        
     }
+    
+    
+    func addUserToFavorites(with user: User) {
+        let favorite = Follower(login: user.login, avatarUrl: user.avatarUrl)
+        PersistenceManager.updateWith(favorite: favorite, actionType: .add) { [weak self] error in
+            guard let self = self else { return }
+            guard let error = error else {
+                self.presentGFAlertOnMainThread(title: "Success!", message: "You have successfully favorited this user", buttonTitle: "Hooray!") /// if error is nil, we call 'presentGFAlertOnMainThread'
+                return
+            }
+            
+            self.presentGFAlertOnMainThread(title: "Something went wrong.", message: error.rawValue, buttonTitle: "Ok") /// if error is not 'nil'
+        }
+    }
+    
     
     
     func configureSearchController() {
@@ -109,16 +114,7 @@ class FollowerListVC: GFDataLoadingVC {
             
             switch result {
             case .success(let followers):
-                if followers.count < 100 { self.hasMoreFollowers = false } /// if it's less then 100 followers, we need to stop network calling
-                self.followers.append(contentsOf: followers) /// to add the followers from other pages to the main array of followers
-                
-                if self.followers.isEmpty {
-                    let message = "This user doesn't have any followers. Go follow them 👻."
-                    DispatchQueue.main.async { self.showEmptyStateView(with: message, in: self.view) }
-                    return
-                }
-                
-                self.updateDataOnScreen(on: self.followers) /// launch collection view creation /// it's here because we will need to update snapshots a lot when scroll down /// self - because we need to the super view var 'followers', not local var.
+                self.updateUI(with: followers)
                 
             case .failure(let error): /// Just naming the parameter to refer to it.
                 self.presentGFAlertOnMainThread(title: "Bad Stuff Happend", message: error.rawValue, buttonTitle: "Ok")
@@ -127,13 +123,27 @@ class FollowerListVC: GFDataLoadingVC {
             self.isLoadingMoreFollowers = false
         }
     }
+    
+    
+    func updateUI (with followers: [Follower]) {
+        if followers.count < 100 { self.hasMoreFollowers = false } /// if it's less then 100 followers, we need to stop network calling
+        self.followers.append(contentsOf: followers) /// to add the followers from other pages to the main array of followers
+        
+        if self.followers.isEmpty {
+            let message = "This user doesn't have any followers. Go follow them 👻."
+            DispatchQueue.main.async { self.showEmptyStateView(with: message, in: self.view) }
+            return
+        }
+        
+        self.updateDataOnScreen(on: self.followers) /// launch collection view creation /// it's here because we will need to update snapshots a lot when scroll down /// self - because we need to the super view var 'followers', not local var.
+    }
 
         
     func configureCollectionView() {  /// configure structure & layout of the collectionView
         collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: UIHelper.createThreeColumnLayout(in: view))
         view.addSubview(collectionView)
-        collectionView.delegate = self /// delegate listens to 'FollowerListVC: UICollectionViewDelegate'
-        collectionView.backgroundColor = .systemBackground
+        collectionView.delegate         = self /// delegate listens to 'FollowerListVC: UICollectionViewDelegate'
+        collectionView.backgroundColor  = .systemBackground
         collectionView.register(FollowerCell.self, forCellWithReuseIdentifier: FollowerCell.reuseID) /// registering the cell for the DataSource
     }
     
@@ -154,8 +164,8 @@ class FollowerListVC: GFDataLoadingVC {
         snapshot.appendItems(followers)
         DispatchQueue.main.async { self.dataSource.apply(snapshot, animatingDifferences: true) }
     }
-
 }
+
 
 extension FollowerListVC: UICollectionViewDelegate {
     
@@ -170,7 +180,6 @@ extension FollowerListVC: UICollectionViewDelegate {
             page += 1
             getFollowers(username: username, page: page)
         }
-        
     }
     
     
@@ -185,7 +194,6 @@ extension FollowerListVC: UICollectionViewDelegate {
         
         present(navController, animated: true)
     }
-    
 }
 
 
@@ -212,13 +220,12 @@ extension FollowerListVC: UserInfoVCDelegate { /// extension for interaction wit
         self.username   = username
         title           = username
         page            = 1 /// reset page to 1 (it could be any number in the memory after we fetched the followers before)
+        
         followers.removeAll()
         filteredFollowers.removeAll()
         ///collectionView.setContentOffset(.zero, animated: true) /// scroll up to the limit
         collectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .top, animated: true) /// scroll up to the 1st item
         getFollowers(username: username, page: page)
     }
-    
-    
 }
  

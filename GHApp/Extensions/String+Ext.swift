@@ -24,7 +24,5 @@ extension String {
     func convertToDisplayFormat() -> String {
         guard let date = self.convertStringToDate() else { return "N/A" }
         return date.convertToMonthYearFormat()
-        
     }
-    
 }
