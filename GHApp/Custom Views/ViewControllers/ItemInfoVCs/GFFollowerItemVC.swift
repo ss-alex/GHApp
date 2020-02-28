@@ -8,7 +8,13 @@
 
 import Foundation
 
+protocol GFFollowerItemVCDelegate: class {
+    func didTapGetFollowers(for user: User) /// 'for user:' -  to give an excess to 'User'' Model
+}
+
 class GFFollowerItemVC: GFItemInfoVC {
+    
+    weak var delegate: GFFollowerItemVCDelegate!
     
     override func viewDidLoad() {
         super.viewDidLoad()

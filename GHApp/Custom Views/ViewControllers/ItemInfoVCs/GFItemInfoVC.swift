@@ -8,6 +8,12 @@
 
 import UIKit
 
+protocol ItemInfoVCDelegate: class {
+    func didTapGitHubProfile(for user: User) /// 'for user:' - to give an excess to 'User'' Model
+    func didTapGetFollowers(for user: User) /// 'for user:' -  to give an excess to 'User'' Model
+}
+
+
 class GFItemInfoVC: UIViewController {
     
     let stackView               = UIStackView()
@@ -16,8 +22,7 @@ class GFItemInfoVC: UIViewController {
     let actionButton            = GFButton()
     
     var user:User!
-    weak var delegate: UserInfoVCDelegate! /// delegate of type 'UserInfoVCDelegate' /// weak - to prevent the retain cicles, memories leakes
-    
+
     
     init(user: User){
         super.init(nibName: nil, bundle: nil) /// returns newly created ViewController , it is a default ViewController.
