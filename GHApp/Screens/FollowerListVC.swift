@@ -79,7 +79,6 @@ class FollowerListVC: GFDataLoadingVC {
         }
     }
     
-    
     func addUserToFavorites(with user: User) {
         let favorite = Follower(login: user.login, avatarUrl: user.avatarUrl)
         PersistenceManager.updateWith(favorite: favorite, actionType: .add) { [weak self] error in
@@ -92,7 +91,6 @@ class FollowerListVC: GFDataLoadingVC {
             self.presentGFAlertOnMainThread(title: "Something went wrong.", message: error.rawValue, buttonTitle: "Ok") /// if error is not 'nil'
         }
     }
-    
     
     
     func configureSearchController() {
@@ -138,6 +136,14 @@ class FollowerListVC: GFDataLoadingVC {
         self.updateDataOnScreen(on: self.followers) /// launch collection view creation /// it's here because we will need to update snapshots a lot when scroll down /// self - because we need to the super view var 'followers', not local var.
     }
 
+    
+    func updateDataOnScreen(on follower: [Follower]) {
+        var snapshot = NSDiffableDataSourceSnapshot<Section, Follower>()
+        snapshot.appendSections([.main])
+        snapshot.appendItems(followers)
+        DispatchQueue.main.async { self.dataSource.apply(snapshot, animatingDifferences: true) }
+    }
+    
         
     func configureCollectionView() {  /// configure structure & layout of the collectionView
         collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: UIHelper.createThreeColumnLayout(in: view))
@@ -157,13 +163,6 @@ class FollowerListVC: GFDataLoadingVC {
         })
     }
     
-    
-    func updateDataOnScreen(on follower: [Follower]) {
-        var snapshot = NSDiffableDataSourceSnapshot<Section, Follower>()
-        snapshot.appendSections([.main])
-        snapshot.appendItems(followers)
-        DispatchQueue.main.async { self.dataSource.apply(snapshot, animatingDifferences: true) }
-    }
 }
 
 

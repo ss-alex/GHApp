@@ -19,7 +19,7 @@ class GFAlertVC: UIViewController {
     var message: String?
     var buttonTitle: String?
     
-    let padding: CGFloat            = 20 // in order not to write 20 every time
+    let padding: CGFloat            = 20
     
     
     init(title: String, message: String, buttonTitle: String) {
@@ -37,7 +37,7 @@ class GFAlertVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = UIColor.black.withAlphaComponent(0.75) /// = view.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.75)
+        view.backgroundColor = UIColor.black.withAlphaComponent(0.75) /// UIColor(red: 0, green: 0, blue: 0, alpha: 0.75)
         
         configureContainerView()
         configureTitleLabel()
@@ -60,7 +60,7 @@ class GFAlertVC: UIViewController {
     
     func configureTitleLabel() {
         containerView.addSubview(titleLabel)
-        titleLabel.text = alertTitle ?? "Something went wrong" // if not - then text
+        titleLabel.text = alertTitle ?? "Something went wrong"
         
         NSLayoutConstraint.activate([
             titleLabel.topAnchor.constraint(equalTo: containerView.topAnchor, constant: padding),
@@ -71,7 +71,7 @@ class GFAlertVC: UIViewController {
     }
 
     
-    func configureActionButton() {  //configuring the button at 2nd - body will fill all free space
+    func configureActionButton() {  
         containerView.addSubview(actionButton)
         actionButton.setTitle(buttonTitle ?? "Ok", for: .normal)
         actionButton.addTarget(self, action: #selector(dismissVC), for: .touchUpInside)

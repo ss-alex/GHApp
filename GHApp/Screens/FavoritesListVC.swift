@@ -73,6 +73,7 @@ class FavoritesListVC: GFDataLoadingVC {
             }
         }
     }
+    
 }
 
 
@@ -84,7 +85,7 @@ extension FavoritesListVC: UITableViewDataSource, UITableViewDelegate {
     
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell { /// configure each cell every time it appears on screen
-        let cell = tableView.dequeueReusableCell(withIdentifier: FavoriteCell.reuseID) as! FavoriteCell /// we cast 'cel' as 'FavoriteCell' because we need to have a possibility to reach function 'setTextAndImageFor' inside the class 'FavoriteCell'
+        let cell = tableView.dequeueReusableCell(withIdentifier: FavoriteCell.reuseID) as! FavoriteCell /// we cast 'cell' as 'FavoriteCell' because we need to have a possibility to reach function 'setTextAndImageFor' inside the class 'FavoriteCell'
         let favorite = favorites[indexPath.row] /// 'indexPath.row''returns an int, and that's the index we are grabbing based on where it's at in the tableView row
         cell.setTextAndImageFor(favorite: favorite) /// every time we scroll down, cellForRowAt is called, and 'setTextAndImageFor' is called through 'FavoriteCell'
         return cell
@@ -109,7 +110,8 @@ extension FavoritesListVC: UITableViewDataSource, UITableViewDelegate {
             guard let error = error else {
                 self.favorites.remove(at: indexPath.row)
                 self.tableView.deleteRows(at: [indexPath], with: .left)
-                return } /// return if we don't have an error
+                return
+            } /// return if we don't have an error
             self.presentGFAlertOnMainThread(title: "Unable to remove", message: error.rawValue, buttonTitle: "Ok")/// if we have an error
         }
     }

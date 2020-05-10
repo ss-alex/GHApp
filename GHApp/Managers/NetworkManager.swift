@@ -10,7 +10,7 @@ import UIKit
 
 class NetworkManager { //creating a singleton
     
-    static let shared           = NetworkManager() //static = every NetworkManager will have 'shared'
+    static let shared           = NetworkManager()
     private let baseUrl         = "https://api.github.com"
     let cache                   = NSCache<NSString,UIImage>()
     
@@ -25,13 +25,13 @@ class NetworkManager { //creating a singleton
         }
         
         let task = URLSession.shared.dataTask(with: url) { data, response, error in
-            
+             
             if let _ = error { //don't pass the new name because we just want to check if there is an error
                 completed(.failure(.unableToComplete))
                 return
             }
             
-            guard let response = response as? HTTPURLResponse, response.statusCode == 200 else { /// if the response not nil and status 200
+            guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
                 completed(.failure(.invalidResponse))
                 return
             }
@@ -55,7 +55,7 @@ class NetworkManager { //creating a singleton
     }
     
     
-    func getUserInfo  (for username: String, completed: @escaping (Result<User, GFError>) -> Void){ 
+    func getUserInfo  (for username: String, completed: @escaping (Result<User, GFError>) -> Void){
         let endpoint = baseUrl + "/users/\(username)"
         
         guard let url = URL(string: endpoint) else {
