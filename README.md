@@ -20,4 +20,5 @@ Search for any Github user, and view their profile, followers, and save them to 
 You just need to clone the project, no 3rd party libraries were used.
 
 ## UI Design:
+<img src="GHApp/Images/UIDesign.png" width="1000">
 
