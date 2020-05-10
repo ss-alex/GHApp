@@ -10,26 +10,23 @@ import UIKit
 
 class GFDataLoadingVC: UIViewController {
 
-    
     var containerView: UIView!
 
     func showLoadingView () {
-        containerView = UIView(frame: view.bounds) /// it fills the whole screen
+        containerView = UIView(frame: view.bounds)
         containerView.backgroundColor   = .systemBackground
-        containerView.alpha             = 0 /// alpha = transperency
+        containerView.alpha             = 0
         view.addSubview(containerView)
-        UIView.animate(withDuration: 0.25) { self.containerView.alpha = 0.8 } /// going from 0 transperency to 0.8 with animation
+        UIView.animate(withDuration: 0.25) { self.containerView.alpha = 0.8 }
         
         let activityIndicator = UIActivityIndicatorView(style: .large)
         containerView.addSubview(activityIndicator)
         activityIndicator.translatesAutoresizingMaskIntoConstraints = false
-        
         NSLayoutConstraint.activate([
             activityIndicator.centerYAnchor.constraint(equalTo: containerView.centerYAnchor),
             activityIndicator.centerXAnchor.constraint(equalTo: containerView.centerXAnchor)
         ])
-        
-        activityIndicator.startAnimating() /// it starts the animation of the progress indicator
+        activityIndicator.startAnimating()
     }
     
     

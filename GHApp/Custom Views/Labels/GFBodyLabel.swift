@@ -37,5 +37,4 @@ class GFBodyLabel: UILabel {
         translatesAutoresizingMaskIntoConstraints = false
     }
     
-
 }

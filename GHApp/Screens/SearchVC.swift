@@ -64,7 +64,7 @@ class SearchVC: UIViewController {
             logoImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             logoImageView.heightAnchor.constraint(equalToConstant: 200),
             logoImageView.widthAnchor.constraint(equalToConstant: 200)
-        ])
+        ]) 
     }
     
     
